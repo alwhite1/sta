@@ -17,7 +17,7 @@ def get_product(request, product_id):
 
 def get_last_product(request):
     data_time_delta = datetime.datetime.now() - datetime.timedelta(days=1)
-    products = Product.objects.exclude(created_at>data_time_delta)
+    products = Product.objects.exclude(created_at__gt=data_time_delta)
     return render(request, 'category.html', {'products': products})
 
 
