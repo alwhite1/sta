@@ -1,10 +1,11 @@
 {% extends "base.html" %}
-{% block title %}{{ category.name }}{% endblock title %}
+{% block title %} Last {% endblock title %}
 {% block content %}
-    <h2>All products for {{ category.name }}:</h2>
+    <h2>All the products which were add in 24 hours.</h2>
     {% for product in products %}
     <h3>{{ product.name }}</h3>
-    <p> {{ product.description | linebreaks }} </p>
+    <p> Description: {{ product.description | linebreaks }} </p>
+    <p> Category: {{ category.name }}
     <p> Price: {{ product.price }} </p>
 
      <a href="/product/{{ category.slug }}/{{ product.slug }}/"> Detail </a>

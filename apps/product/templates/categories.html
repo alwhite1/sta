@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Categories{% endblock title %}
+{% block content %}
+    {% for category in categories %}
+    <h3>{{ category.name }}</h3>
+    <p> {{ category.description | linebreaks }} </p>
+     <a href="/product/{{ category.slug }}/"> Detail </a>
+    <br>
+        {% endfor %}
+    <a href="/product/last/"> Last in 24 hours </a>
+{% endblock content %}
