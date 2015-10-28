@@ -1,9 +1,9 @@
 MANAGE=django-admin.py
-SETTINGS=frame.settings
+SETTINGS=sta.settings
 
 test:
-	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) test  test_app
-	flake8 --exclude '*migrations*' apps
+	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) test  product
+	flake8 --exclude '*migrations*' --ignore=E501 apps
 
 func: run test_func
 
