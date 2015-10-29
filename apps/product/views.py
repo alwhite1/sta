@@ -1,10 +1,10 @@
 import datetime
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.contrib.auth.views import login_required
 from .models import Product, Category
 
 def main(request):
-    return redirect(get_categories(request))
+    return render(request, 'main.html')
 
 def get_categories(request):
     categories = Category.objects.all()
