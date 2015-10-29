@@ -3,8 +3,10 @@ from django.shortcuts import render
 from django.contrib.auth.views import login_required
 from .models import Product, Category
 
+
 def main(request):
     return render(request, 'main.html')
+
 
 def get_categories(request):
     categories = Category.objects.all()
@@ -23,6 +25,7 @@ def get_product(request, double_slug):
     category__slug = double_slug.split('/')[0]
     return render(request, 'product.html', {'product': product, 'product_slug': product_slug,
                                             'category_slug': category__slug})
+
 
 @login_required
 def get_last(request):
