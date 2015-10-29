@@ -30,7 +30,7 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         self.modified_at = datetime.datetime.now()
-        self.slug = slugify(self.name).replace(' ', '_')
+        self.slug = slugify(self.name).replace('-', '_')
         super(Product, self).save(*args, **kwargs)
 
     def __unicode__(self):
