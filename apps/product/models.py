@@ -24,7 +24,7 @@ class Product(models.Model):
     slug = models.SlugField()
     description = models.TextField()
     price = models.IntegerField()
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(blank=True, null=True)
     category = models.ForeignKey(to=Category, to_field='slug')
 
