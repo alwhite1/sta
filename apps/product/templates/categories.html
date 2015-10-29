@@ -2,10 +2,9 @@
 {% block title %}Categories{% endblock title %}
 {% block content %}
     {% for category in categories %}
-    <h3>{{ category.name }}</h3>
-    <p> {{ category.description | linebreaks }} </p>
-     <a href="/product/{{ category.slug }}/"> Detail </a>
+        <h3><a href="/product/{{ category.slug }}/"> {{ category.name }} </a></h3>
+        <p> {{ category.description | linebreaks }} </p>
+    {% endfor %}
     <br>
-        {% endfor %}
     <a href="/"> Back </a>
 {% endblock content %}

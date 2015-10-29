@@ -14,17 +14,16 @@ def get_categories(request):
 
 
 def get_category(request, category_slug):
-    category = Category.objects.get(slug=category_slug)
-    products = Product.objects.filter(category_id=category.id)
-    return render(request, 'category.html', {'products': products, 'category': category})
+    single_category = Category.objects.get(slug=category_slug)
+    products = Product.objects.filter(category=single_category)
+    return render(request, 'category.html', {'products': products, 'category': single_category})
 
 
 def get_product(request, double_slug):
     product_slug = double_slug.split('/')[1]
     product = Product.objects.get(slug=product_slug)
-    category__slug = double_slug.split('/')[0]
-    return render(request, 'product.html', {'product': product, 'product_slug': product_slug,
-                                            'category_slug': category__slug})
+    return_url = request.META.get('HTTP_REFERER', '/')
+    return render(request, 'product.html', {'product': product, 'return_url': return_url})
 
 
 @login_required
