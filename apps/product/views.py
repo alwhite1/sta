@@ -1,5 +1,7 @@
 import datetime
 from django.shortcuts import render
+from django.http import  Http404
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.views import login_required
 from .models import Product, Category
 
@@ -14,14 +16,20 @@ def get_categories(request):
 
 
 def get_category(request, category_slug):
-    single_category = Category.objects.get(slug=category_slug)
+    try:
+        single_category = Category.objects.get(slug=category_slug)
+    except ObjectDoesNotExist:
+        raise Http404("Category Does Not Exist")
     products = Product.objects.filter(category=single_category)
     return render(request, 'category.html', {'products': products, 'category': single_category})
 
 
 def get_product(request, double_slug):
     product_slug = double_slug.split('/')[1]
-    product = Product.objects.get(slug=product_slug)
+    try:
+        product = Product.objects.get(slug=product_slug)
+    except ObjectDoesNotExist:
+        raise Http404("Product Does Not Exist")
     return_url = request.META.get('HTTP_REFERER', '/')
     return render(request, 'product.html', {'product': product, 'return_url': return_url})
 
