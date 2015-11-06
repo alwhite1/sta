@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Main{% endblock title %}
 {% block content %}
-   <p>  <a href="/product/"> Categories </a> </p>
-   <p>  <a href="/product/last/"> Last in 24 hours </a>  </p>
+   <p>  <a href="{% url "product:categories" %}"> Categories </a> </p>
+   <p>  <a href="{% url "product:last" %}"> Last in 24 hours </a>  </p>
 {% endblock content %}

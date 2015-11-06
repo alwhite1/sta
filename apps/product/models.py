@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.core.urlresolvers import reverse
 from pytils.translit import slugify
 
 
@@ -15,6 +16,9 @@ class Category(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('product:category_products', kwargs={'category_slug': self.slug})
 
 
 class Product(models.Model):
@@ -33,3 +37,6 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('product:single_product', kwargs={'category_slug': self.category.slug, 'product_slug': self.slug})[:-1]

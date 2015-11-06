@@ -24,8 +24,7 @@ def get_category(request, category_slug):
     return render(request, 'category.html', {'products': products, 'category': single_category})
 
 
-def get_product(request, double_slug):
-    product_slug = double_slug.split('/')[1]
+def get_product(request, category_slug, product_slug):
     try:
         product = Product.objects.get(slug=product_slug)
     except ObjectDoesNotExist:

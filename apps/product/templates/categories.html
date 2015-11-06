@@ -2,9 +2,9 @@
 {% block title %}Categories{% endblock title %}
 {% block content %}
     {% for category in categories %}
-        <h3><a href="/product/{{ category.slug }}/"> {{ category.name }} </a></h3>
+        <h3><a href="{{ category.get_absolute_url  }}"> {{ category.name }} </a></h3>
         <p> {{ category.description | linebreaks }} </p>
     {% endfor %}
     <br>
-    <a href="/"> Back </a>
+    <a href="{% url 'main' %}"> Back </a>
 {% endblock content %}

@@ -3,11 +3,11 @@
 {% block content %}
     <h2>All the products which were add in 24 hours.</h2>
     {% for product in products %}
-        <h3><a href="/product/{{ product.category.slug }}/{{ product.slug }}/"> {{ product.name }} </a></h3>
+        <h3><a href="{{ product.get_absolute_url }}"> {{ product.name }} </a></h3>
         <p> Description: {{ product.description | linebreaks }} </p>
         <p> Price: {{ product.price }} </p>
-        <p> Category: <a href="/product/{{ product.category.slug }}/"> {{ product.category.name }} </a> </p>
+        <p> Category: <a href="{{ product.category.get_absolute_url  }}"> {{ product.category.name }} </a> </p>
     {% endfor %}
     <br>
-    <a href="/product/"> Back </a>
+    <a href={% url 'main' %}> Back </a>
 {% endblock content %}
