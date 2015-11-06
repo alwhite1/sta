@@ -1,5 +1,6 @@
 import datetime
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from django.http import  Http404
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.views import login_required
@@ -38,3 +39,22 @@ def get_last(request):
     data_time_delta = datetime.datetime.now() - datetime.timedelta(days=1)
     products = Product.objects.filter(created_at__gt=data_time_delta)
     return render(request, 'last.html', {'products': products})
+
+
+class CategoriesList(ListView):
+    model = Category
+    template_name = 'categories.html'
+    context_object_name = "categories"
+
+
+class CategoryDetailView(DetailView):
+    model = Category
+    template_engine = 'category.html'
+
+
+class ProductDetail(DetailView):
+    pass
+
+
+class LastProduct(DetailView):
+    pass
